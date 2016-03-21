@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="http://malsup.github.com/jquery.form.js"></script>
+         <script>
+       //ajaxForm
+        var queryString = $('#form1').formSerialize();
+        var optionss = {
+            dataType:"text",
+            type:'GET',
+            url: "chuli.php",
+            beforeSubmit:showRequest,
+            success:showResponse,
+            clearForm:true
+        };
+        $('#form1').ajaxForm(optionss);
+        function showRequest() {    }
+        function showResponse(data){
+            console.log(data);
+            alert(data);
+        }
+         </script>
+    </head>
+    <body>
+        <form method="GET" id="form1">
+            <input type="text" name="name" />
+            <input type="text" name="sex" />
+            <input type="submit" value="提交"/>
+        </form>
+        <hr />
+        <form  method="GET" id="form2">
+            <input type="text" name="name" />
+            <input type="text" name="sex" />
+            <input type="button" id="tijiao" value="提交"/>
+        </form>
+    </body>
+    <script>
+        //ajaxSubmit
+            $("#tijiao").click(function(){
+                $("#form2").ajaxSubmit({
+                    success:function(data){
+                        alert(data);
+                    }
+                })
+            });
+        </script>
+</html>
